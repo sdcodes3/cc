@@ -25,7 +25,7 @@ function App() {
 
     try {
       const tokenizeResponse = await axios.post(
-        "http://localhost:5000/tokenize",
+        "http://127.0.0.1:5000/tokenize",
         { source }
       );
       setTokens(tokenizeResponse?.data?.tokens);
@@ -41,7 +41,7 @@ function App() {
         setCurrentPhase(2);
         try {
           const parseResponse = await axios.post(
-            "http://localhost:5000/parse",
+            "http://127.0.0.1:5000/parse",
             { tokens }
           );
           setAst(parseResponse.data.ast);
@@ -60,7 +60,7 @@ function App() {
         setCurrentPhase(3);
         try {
           const typeCheckResponse = await axios.post(
-            "http://localhost:5000/typecheck",
+            "http://127.0.0.1:5000/typecheck",
             { ast }
           );
           setErrors(typeCheckResponse.data.errors);
@@ -93,7 +93,7 @@ function App() {
         setCurrentPhase(4);
         try {
           const generateResponse = await axios.post(
-            "http://localhost:5000/generate",
+            "http://127.0.0.1:5000/generate",
             { ast }
           );
           setNasmCode(generateResponse.data.nasm_code);
